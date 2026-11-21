@@ -1,0 +1,8 @@
+import Link from 'next/link';
+import SectionTitle from '@/components/ui/SectionTitle';
+import { services } from '@/data/site';
+import { BadgeCheck, Clock3, LockKeyhole } from 'lucide-react';
+
+export default function ServicesSection() {
+  return <section className="section services-section" id="services"><div className="services-layout"><div className="services-intro"><SectionTitle eyebrow="Our services">Everything you need, <span className="accent">in one place.</span></SectionTitle><p className="body-copy">Everyday essentials and specialist care, organized around your home.</p><div className="service-points">{[[BadgeCheck,'Consistent standards'],[Clock3,'Simple scheduling'],[LockKeyhole,'Secure & reliable']].map(([Icon,label]) => { const ItemIcon = Icon as typeof BadgeCheck; return <div key={label as string}><span><ItemIcon /></span><div><strong>{label as string}</strong><p>Designed to keep your booking clear and easy.</p></div></div>; })}</div><Link href="/services" className="coral-button">View all services</Link></div><div className="service-cards">{services.map((service) => { const Icon = service.icon; return <article key={service.title} className="service-card">{service.image ? <img src={service.image} alt="" /> : <div className="more-icons"><Icon /></div>}<h3>{service.title}</h3><p>{service.description}</p><Link href="/services" aria-label={`View ${service.title}`}><span>View</span></Link></article>; })}<div className="request-row"><div><strong>Can’t find what you need?</strong><p>Tell us what you need and we’ll guide you.</p></div><Link href="/services">Request a service</Link></div></div></div></section>;
+}
